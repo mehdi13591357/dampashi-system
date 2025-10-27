@@ -3,18 +3,8 @@ from django.http import JsonResponse
 from .models import Customer, Product, Order, OrderItem
 
 def home_page(request):
-    """صفحه اصلی برای مدیریت سریع"""
-    stats = {
-        'total_customers': Customer.objects.count(),
-        'total_orders': Order.objects.count(),
-        'total_products': Product.objects.count(),
-        'new_orders': Order.objects.filter(status='pending').count(),
-    }
-    
-    return render(request, 'orders/home.html', {
-        'stats': stats,
-        'recent_orders': Order.objects.all().order_by('-id')[:10]
-    })
+    """صفحه اصلی - ریدایرکت به ادمین"""
+    return redirect('/admin/')
 
 def new_order(request):
     """صفحه ثبت سفارش جدید"""
